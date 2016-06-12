@@ -2,9 +2,18 @@
 
 <%= @player2_name %>'s HP: <%= @player2_hp %>
 
-<form action='/attack' method='post'>
-<button type='submit'>Attack Player 2</button>
-</form>
+<%if @player1_turn %>
+  <form action='/attack' method='post'>
+  <button type='submit'>Attack Player 2</button>
+  </form>
+<%end%>
+
+<%if @player2_turn %>
+  <form action='/attack' method='post'>
+  <button type='submit'>Attack Player 1</button>
+  </form>
+<%end%>
+
 
 <% if @player2_hp < 100%>
 <%= @player1_name %> has attacked <%= @player2_name %>
