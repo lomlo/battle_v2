@@ -12,8 +12,6 @@ class Battle < Sinatra::Base
 
   post '/pre_game' do
     session[:game] = Game.new(Player.new(params[:name1]), Player.new(params[:name2]))
-    # session[:name1] = Player.new(params[:name1])
-    # session[:name2] = Player.new(params[:name2])
     redirect '/game'
   end
 
@@ -22,11 +20,9 @@ class Battle < Sinatra::Base
     @player2 = session[:game].player2
     @player1_name = @player1.name
     @player2_name = @player2.name
-    p '=========================='
-    p @player1_turn = @player1.turn
     @player1_turn = @player1.turn
-    p @player2_turn = @player2.turn
     @player2_turn = @player2.turn
+    @player1_hp = @player1.hp
     @player2_hp = @player2.hp
     erb(:game)
   end
@@ -35,12 +31,11 @@ class Battle < Sinatra::Base
     @player1 = session[:game].player1
     @player2 = session[:game].player2
     @game = session[:game]
-    # @game.attack(@player2)
     if @player1.turn
       @game.attack(@player2)
     else
       @game.attack(@player1)
-    end 
+    end
     redirect '/game'
   end
 
