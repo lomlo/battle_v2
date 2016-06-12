@@ -9,9 +9,15 @@ class Player
     @hp = DEFAULT_HEALTH
     @name = name
     @turn = true
+    @looses = false
   end
 
   def receive_damage
     self.hp -= DEFAULT_ATTACK
+  end
+
+  def looses?
+    @looses = true if self.hp <= 0
+    @looses
   end
 end

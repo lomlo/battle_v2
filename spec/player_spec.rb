@@ -36,6 +36,16 @@ describe Player do
     end
   end
 
+  describe '#looses?' do
+    it 'returns false if the player has more then 0 health' do
+      expect(player1.looses?).to eq false
+    end
+    it 'returns true if player has 0 health' do
+      10.times { player1.receive_damage }
+      expect(player1.looses?).to eq true
+    end
+  end
+
   describe '#turn' do
     it 'defaults to true for player 1' do
       expect(player1.turn).to eq true

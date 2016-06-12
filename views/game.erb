@@ -16,7 +16,18 @@
   </form>
 <%end%>
 
+<% if @player1_turn && @player1_hp < 100%>
+<%= @player2_name %> has attacked <%= @player1_name %>
+<% end %>
 
-<% if @player2_hp < 100%>
+<% if @player2_turn %>
 <%= @player1_name %> has attacked <%= @player2_name %>
+<% end %>
+
+<%if @player1.looses? %>
+  <%= @player1_name %> Looses!!
+<% end %>
+<p>
+<%if @player2.looses? %>
+  <%= @player2_name %> Looses!!
 <% end %>
