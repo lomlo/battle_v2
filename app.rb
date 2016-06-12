@@ -22,7 +22,10 @@ class Battle < Sinatra::Base
     @player2 = session[:game].player2
     @player1_name = @player1.name
     @player2_name = @player2.name
+    p '=========================='
+    p @player1_turn = @player1.turn
     @player1_turn = @player1.turn
+    p @player2_turn = @player2.turn
     @player2_turn = @player2.turn
     @player2_hp = @player2.hp
     erb(:game)
@@ -32,7 +35,12 @@ class Battle < Sinatra::Base
     @player1 = session[:game].player1
     @player2 = session[:game].player2
     @game = session[:game]
-    @game.attack(@player2)
+    # @game.attack(@player2)
+    if @player1.turn
+      @game.attack(@player2)
+    else
+      @game.attack(@player1)
+    end 
     redirect '/game'
   end
 
